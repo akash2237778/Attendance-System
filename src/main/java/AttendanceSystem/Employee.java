@@ -194,7 +194,7 @@ public class Employee{
     		outTimeStr = outTime.getTime();
     		outTimeList.add(outTimeStr);
     		isWorking = false;
-    		System.out.println("Exit " + name + " : " + outTime.toString());
+    		System.out.println("Out Time " + name + " : " + outTime.toString());
     	}else {
     		Date inTime = new Date();
     		inTimeStr = inTime.getTime();

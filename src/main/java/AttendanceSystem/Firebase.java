@@ -71,7 +71,7 @@ public class Firebase {
 	   		  @Override
 	   		  public void onDataChange(DataSnapshot dataSnapshot) {
 	   		    result = dataSnapshot.getValue().toString();
-	   		    System.out.println( result);
+	   		   // System.out.println( result);
 	   		  }
 	
 	   		  @Override
@@ -118,7 +118,7 @@ public class Firebase {
 		 org.punch("empId"+(org.id-1));
 		 org.punch("empId"+(org.id-1));
 		 saveData("Organisation", org);
-		 SleepThread(100000);
+		 SleepThread(100);
 		 return org;
 	 }
 	 

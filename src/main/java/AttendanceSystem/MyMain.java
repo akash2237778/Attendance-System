@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,38 +23,52 @@ public class MyMain {
     	DatabaseReference ref;
     	Firebase obj = new Firebase();
     	ref = obj.setRef("/");
-    
-    	Organisation s = new Organisation();
-    	s.addEmp("ABCD", 19, 4.2f, 250);
-    	s.addEmp("DEFG", 20, 3.6f , 300);
-    	s.addEmp("GHIJ", 36, 6.3f , 150);
-    	s.addEmp("KLMN", 28, 3.3f , 150);
-    	s.addEmp("OPQR", 29, 4.2f , 150);
-    	s.punch("empId0");
-    	s.punch("empId1");
-    	s.punch("empId2");
-    	s.punch("empId3");
-    	s.punch("empId4");
-    	s.punch("empId0");
-    	s.punch("empId1");
-    	s.punch("empId2");
-    	s.punch("empId3");
-    	s.punch("empId4");
-    	obj.saveData("Organisation", s);
-    	obj.SleepThread(100000);
-    	
-    	
     	String JSONstr = obj.convertToJSON(obj.retriveData("/Organisation"));
-    	
     	Gson g = new Gson(); 
-    	Organisation p = g.fromJson(JSONstr, Organisation.class);
-    	System.out.println(JSONstr);
+    	
+    	Organisation p =  g.fromJson(JSONstr, Organisation.class);
+    	//System.out.println(JSONstr);
+    	
+    	//obj.addEmptoOrg(p, "XYZD", 63, 5.2f, 120);
 
+    	//p.punch("empId3");
+    	
+    	//obj.SleepThread(100000);
+    	Scanner scan = new Scanner(System.in);
 
-    	p.punch("empId0");
-    	//System.out.println("Helllllooo OUT :" + p.allEmp.get("empId0").inTimeList.get(0)  +"    " 	);//p.allEmp.get("empId0").calSalary() );
-    	obj.saveData("Organisation", p);
-    	obj.SleepThread(100000);
+		System.out.println("Welcome to Attendance System");
+    	while(true){
+    		int choice=0;
+    		System.out.println("1. Add Employee");
+    		System.out.println("2. Punch Attendance");
+    		choice = Integer.valueOf(scan.nextLine());
+    		switch(choice) {
+    		case 1:
+    			System.out.print("Name :");
+    			String name = scan.nextLine();
+    			System.out.print("Age :");
+    			int age = Integer.valueOf(scan.nextLine());
+    			System.out.print("OverTimeRate :");
+    			float ovrTimeR = Float.valueOf(scan.nextLine());
+    			System.out.print("Salary Per Day :");
+    			float SalaryPerDay = Float.valueOf(scan.nextLine());
+    			obj.addEmptoOrg(p, name , age  , ovrTimeR , SalaryPerDay);
+    			obj.saveData("Organisation", p);
+    			break;
+    		case 2:
+    			System.out.print("Enter Emp Id :");
+    			int empId = Integer.valueOf(scan.nextLine());
+    			p.punch("empId"+empId);
+    			obj.saveData("Organisation", p);
+    			break;
+    		default:
+    			System.out.println("Invalid Option");
+    			break;
+    		}
+    		
+    		//obj.saveData("Organisation", p);
+    		
+    	}
     }
     
     
