@@ -7,15 +7,15 @@ import java.util.List;
 public class Organisation {
 	public HashMap<String,Employee> allEmp;
 	public int id;
-	public List<Employee> currentlyWorking;
+	public HashMap<String,Employee> currentlyWorking;
 	
 	
 	
 	public Organisation(){
 		allEmp = new HashMap<String,Employee>();
-		currentlyWorking = new ArrayList<Employee>();
+		currentlyWorking = new HashMap<String,Employee>();
 	}
-	public Organisation(List<Employee> currentlyWorking , int id ,HashMap<String,Employee> allEmp ){
+	public Organisation(HashMap<String,Employee> currentlyWorking , int id ,HashMap<String,Employee> allEmp ){
 		this.allEmp = allEmp;
 		this.currentlyWorking = currentlyWorking;
 		this.id = id;
@@ -36,7 +36,7 @@ public class Organisation {
 		this.id = id;	
 	}
 	
-	public void setCurrentlyWorking(List<Employee> currentlyWorking) {
+	public void setCurrentlyWorking(HashMap<String,Employee> currentlyWorking) {
 		this.currentlyWorking = currentlyWorking;	
 	}
 
@@ -48,17 +48,17 @@ public class Organisation {
 	public int getId() {
 		return id;
 	}
-	public List<Employee> getCurrentlyWorking() {
+	public HashMap<String,Employee> getCurrentlyWorking() {
 		return currentlyWorking;	
 	}
 	
 	public void punch(String empid) {
 		if (allEmp.containsKey(empid)) { 
 			
-			if(allEmp.get(empid).attendancePunch()) {			
-				currentlyWorking.add(allEmp.get(empid));
+			if(allEmp.get(empid).attendancePunch()) {				
+				currentlyWorking.put(empid, allEmp.get(empid));
            }else {
-        	   currentlyWorking.remove(allEmp.get(empid));
+        	   currentlyWorking.remove(empid);
            }
 		}
 	}

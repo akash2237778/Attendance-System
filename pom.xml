@@ -28,4 +28,48 @@
 </dependency>
 
   </dependencies>
+
+  
+  <build>
+    <plugins>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.1</version>
+            <configuration>
+                <fork>true</fork>
+                <executable>/home/akash/jdk-11.0.7+10/bin/javac</executable>
+            </configuration>
+        </plugin>
+
+    <plugin>
+      <artifactId>maven-assembly-plugin</artifactId>
+      <configuration>
+        <archive>
+          <manifest>
+            <mainClass>AttendanceSystem.MyMain</mainClass>
+          </manifest>
+        </archive>
+        <descriptorRefs>
+          <descriptorRef>jar-with-dependencies</descriptorRef>
+        </descriptorRefs>
+      </configuration>
+    </plugin>
+
+
+    </plugins>
+
+<resources>
+      <resource>
+        <directory>src/main/java/AttendanceSystem/</directory>
+        <includes>
+          <include>attendancesystem-7604d-firebase-adminsdk-kdrhc-ef35be211b.json</include>
+        </includes>
+      </resource>
+    </resources>
+</build>
+
+<properties>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+</properties>
 </project>

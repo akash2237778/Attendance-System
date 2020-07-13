@@ -37,11 +37,12 @@ public class MyMain {
     	Scanner scan = new Scanner(System.in);
 
 		System.out.println("Welcome to Attendance System");
-    	while(true){
+    	
     		int choice=0;
-    		System.out.println("1. Add Employee");
-    		System.out.println("2. Punch Attendance");
-    		choice = Integer.valueOf(scan.nextLine());
+    		//System.out.println("1. Add Employee");
+    		//System.out.println("2. Punch Attendance");
+			//choice = Integer.valueOf(scan.nextLine());
+			choice = args[0].equals("id") ? 2 : 1;
     		switch(choice) {
     		case 1:
     			System.out.print("Name :");
@@ -57,18 +58,23 @@ public class MyMain {
     			break;
     		case 2:
     			System.out.print("Enter Emp Id :");
-    			int empId = Integer.valueOf(scan.nextLine());
+    			//int empId = Integer.valueOf(scan.nextLine());
+    			int empId = Integer.parseInt(args[1]);
     			p.punch("empId"+empId);
-    			obj.saveData("Organisation", p);
+				obj.saveData("Organisation", p);
     			break;
     		default:
     			System.out.println("Invalid Option");
     			break;
-    		}
     		
     		//obj.saveData("Organisation", p);
-    		
-    	}
+		}
+			System.out.print("press 1 to exit");
+			int exit= Integer.valueOf(scan.nextLine());
+			if(exit ==1){
+				System.out.print("exiting");
+			}
+    	
     }
     
     
