@@ -97,6 +97,7 @@ public class Firebase {
 		 }
 	 
 	 public String convertToJSON(String Total) {
+		
 		 	Total =Total.replace("={", "\" : {");
 	    	Total =Total.replace("=[", "\" : [");
 	    	Total =Total.replace("=", "\" : \"");
@@ -110,13 +111,17 @@ public class Firebase {
 	    	Total = Total.replace("d\" : [", "d\" : [\"");
 			Total = Total.replace(", \"{",", {");
 			Total = Total.replace("\"}\"","\"}");
+			Total = Total.replace("}\" } ", "\"} } ");
+			Total = Total.replace("]}}}", "\"]}}}");
+			Total = Total.replace("]\"", "\"]");
+			System.out.println(Total);
 	    	return Total;
 	 }
 	 
 	 public Organisation addEmptoOrg(Organisation org , String nam, int age,  float overtimeRate, float salaryPerDay) {
 		 org.addEmp(  nam , age, overtimeRate, salaryPerDay);
-		 org.punch("empId"+(org.id-1));
-		 org.punch("empId"+(org.id-1));
+		 org.punch("empId"+(org.id-1) , 0.0f);
+		 org.punch("empId"+(org.id-1) , 0.0f);
 		 saveData("Organisation", org);
 		 SleepThread(100);
 		 return org;

@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -21,14 +22,16 @@ public class Employee{
     public Boolean isWorking;
     public List<Long> inTimeList;
     public List<Long> outTimeList;
-    public List<Long> hrsWorked;
-    public int workingHrs;
-    private long startDay;
-    public int totalDays;
-    public int totalHrsWorked;
-    public int overTimeHrs;
-    public long salary;
-    public int daysWorked;
+	public List<Long> hrsWorked;
+	public HashMap<String,Float> temperatureList;
+	public float temperature;
+  //  public int workingHrs;
+	private long startDay;
+	   // public int totalDays;
+   // public int totalHrsWorked;
+  //  public int overTimeHrs;
+ //   public long salary;
+  //  public int daysWorked;
 
     Employee(String name, int age, String empId , float overtimeRate, float salaryPerDay){
         this.name = name;
@@ -39,8 +42,9 @@ public class Employee{
         isWorking = false;
         inTimeList = new ArrayList<Long>();
         outTimeList = new ArrayList<Long>();
-        hrsWorked = new ArrayList<Long>();
-        workingHrs = 8;
+		hrsWorked = new ArrayList<Long>();
+		temperatureList = new HashMap<String,Float>();
+ //       workingHrs = 8;
         startDay = new Date().getTime();
     }
     
@@ -133,14 +137,6 @@ public class Employee{
 		this.hrsWorked = hrsWorked;
 	}
 
-	public int getWorkingHrs() {
-		return workingHrs;
-	}
-
-	public void setWorkingHrs(int workingHrs) {
-		this.workingHrs = workingHrs;
-	}
-
 	public Long getStartDay() {
 		return startDay;
 	}
@@ -148,6 +144,31 @@ public class Employee{
 	public void setStartDay(Long startDay) {
 		this.startDay = startDay;
 	}
+
+	public void setTemperature(Float temperature){
+		temperatureList = new HashMap<String,Float>();
+		temperatureList.put(new Date().toString(), temperature);
+	}
+	public float getTemperature(){
+		return temperature;
+	}
+
+	public HashMap<String,Float> getTemperatureList() {
+		return temperatureList;
+	}
+
+	public void setTemperatureList(HashMap<String,Float> temperatureList) {
+		this.temperatureList = temperatureList;
+	}
+
+/*	public int getWorkingHrs() {
+		return workingHrs;
+	}
+
+	public void setWorkingHrs(int workingHrs) {
+		this.workingHrs = workingHrs;
+	}
+
 
 	public int getTotalDays() {
 		return totalDays;
@@ -185,33 +206,50 @@ public class Employee{
 		this.overTimeHrs = overTimeHrs;
 	}
     
+*/    
     
-    
-    public boolean attendancePunch() {
+    public boolean attendancePunch(Float temp) {
     	if(isWorking) {
     		//exit
     		Date outTime = new Date();
     		outTimeStr = outTime.getTime();
-    		outTimeList.add(outTimeStr);
+			outTimeList.add(outTimeStr);
+			temperatureList.put(outTime.toString(), temp);
     		isWorking = false;
-    		System.out.println("Out Time " + name + " : " + outTime.toString());
+    		System.out.println(name + " | Out Time :" + outTime.toString());
     	}else {
     		Date inTime = new Date();
     		inTimeStr = inTime.getTime();
-    		inTimeList.add(inTimeStr);
+			inTimeList.add(inTimeStr);
+			temperatureList.put(inTime.toString(), temp);
     		isWorking = true;
-    		System.out.println("In Time " + name + " : " + inTime.toString());
+    		System.out.println(name + " | In Time :" + inTime.toString());
     	}
     	return isWorking;
     }
     
     public void getHrs(int index) {
-    	long diff = 0;
-			diff = outTimeList.get(index) - inTimeList.get(index);
+		if(hrsWorked == null){
+			hrsWorked = new ArrayList<Long>();
+		}
+		long diff = 0;
+		diff = outTimeList.get(index) - inTimeList.get(index);
 		long diffHours = diff / (60 * 60 * 1000);
+		System.out.println(diffHours);
+    	
 		hrsWorked.add(diffHours);
 		//System.out.println(diff);
-    }
+	}
+	
+	public void calHrsWorked(){
+		int count = outTimeList.size() < inTimeList.size() ? outTimeList.size() : inTimeList.size(); 
+		System.out.println(count);
+		for(int i =0 ; i < count ; i++){
+			
+			getHrs(i);
+		}
+	}
+
     
     //Days Worked
   /*  public int getDays() {

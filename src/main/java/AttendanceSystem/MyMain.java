@@ -38,31 +38,49 @@ public class MyMain {
 
 		System.out.println("Welcome to Attendance System");
     	
-    		int choice=0;
+    		int choice=3;
     		//System.out.println("1. Add Employee");
     		//System.out.println("2. Punch Attendance");
 			//choice = Integer.valueOf(scan.nextLine());
-			choice = args[0].equals("id") ? 2 : 1;
-    		switch(choice) {
+			if(args[0].equals("id")){
+				choice = 2;
+			}else if(args[0].equals("add")){
+				choice = 1;
+			}else if(args[0].equals("hw")){
+				choice = 3;
+			}else{
+				choice = 0;
+			}
+			switch(choice) {
     		case 1:
     			System.out.print("Name :");
     			String name = scan.nextLine();
     			System.out.print("Age :");
     			int age = Integer.valueOf(scan.nextLine());
-    			System.out.print("OverTimeRate :");
-    			float ovrTimeR = Float.valueOf(scan.nextLine());
     			System.out.print("Salary Per Day :");
     			float SalaryPerDay = Float.valueOf(scan.nextLine());
-    			obj.addEmptoOrg(p, name , age  , ovrTimeR , SalaryPerDay);
+    			obj.addEmptoOrg(p, name , age  , 5.6f , SalaryPerDay);
     			obj.saveData("Organisation", p);
     			break;
     		case 2:
     			System.out.print("Enter Emp Id :");
-    			//int empId = Integer.valueOf(scan.nextLine());
-    			int empId = Integer.parseInt(args[1]);
-    			p.punch("empId"+empId);
+				//int empId = Integer.valueOf(scan.nextLine());
+				int empId = 0;
+				Float temp = 25.0f;
+				try{
+				empId = Integer.parseInt(args[1]);
+				temp = Float.parseFloat(args[2]);
+				}catch(Exception e){
+					System.out.println("No temp input");
+				}
+				p.punch("empId"+empId , temp );
 				obj.saveData("Organisation", p);
-    			break;
+				break;
+			case 3:
+				System.out.println("Calculating HrsWorked");
+				p.calHWOrg();
+				obj.saveData("Organisation", p);
+				break;
     		default:
     			System.out.println("Invalid Option");
     			break;

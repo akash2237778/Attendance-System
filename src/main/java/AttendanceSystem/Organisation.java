@@ -2,6 +2,7 @@ package AttendanceSystem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class Organisation {
@@ -52,14 +53,20 @@ public class Organisation {
 		return currentlyWorking;	
 	}
 	
-	public void punch(String empid) {
+	public void punch(String empid , Float temp) {
 		if (allEmp.containsKey(empid)) { 
 			
-			if(allEmp.get(empid).attendancePunch()) {				
+			if(allEmp.get(empid).attendancePunch(temp)) {				
 				currentlyWorking.put(empid, allEmp.get(empid));
            }else {
         	   currentlyWorking.remove(empid);
            }
+		}
+	}
+
+	public void calHWOrg(){
+		for(String key: allEmp.keySet()){
+				allEmp.get(key).calHrsWorked();
 		}
 	}
 }
