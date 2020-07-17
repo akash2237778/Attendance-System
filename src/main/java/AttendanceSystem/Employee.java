@@ -28,9 +28,9 @@ public class Employee{
   //  public int workingHrs;
 	private long startDay;
 	   // public int totalDays;
-   // public int totalHrsWorked;
+    public int totalHrsWorked;
   //  public int overTimeHrs;
- //   public long salary;
+    public float salary;
   //  public int daysWorked;
 
     Employee(String name, int age, String empId , float overtimeRate, float salaryPerDay){
@@ -160,6 +160,13 @@ public class Employee{
 	public void setTemperatureList(HashMap<String,Float> temperatureList) {
 		this.temperatureList = temperatureList;
 	}
+	public float getSalary() {
+		return salary;
+	}
+
+	public void setSalary() {
+		this.salary = totalHrsWorked*salaryPerDay;
+	}
 
 /*	public int getWorkingHrs() {
 		return workingHrs;
@@ -186,13 +193,7 @@ public class Employee{
 		this.totalHrsWorked = totalHrsWorked;
 	}
 
-	public long getSalary() {
-		return salary;
-	}
-
-	public void setSalary(long salary) {
-		this.salary = salary;
-	}
+	
 
 	public int getDaysWorked() {
 		return daysWorked;
@@ -224,14 +225,15 @@ public class Employee{
 			temperatureList.put(inTime.toString(), temp);
     		isWorking = true;
     		System.out.println(name + " | In Time :" + inTime.toString());
-    	}
+		}
+		temperature = temp;
     	return isWorking;
     }
     
     public void getHrs(int index) {
-		if(hrsWorked == null){
-			hrsWorked = new ArrayList<Long>();
-		}
+		
+		hrsWorked = new ArrayList<Long>();
+		
 		long diff = 0;
 		diff = outTimeList.get(index) - inTimeList.get(index);
 		long diffHours = diff / (60 * 60 * 1000);
@@ -239,6 +241,7 @@ public class Employee{
     	
 		hrsWorked.add(diffHours);
 		//System.out.println(diff);
+		
 	}
 	
 	public void calHrsWorked(){
@@ -250,6 +253,13 @@ public class Employee{
 		}
 	}
 
+
+	public void getTotalHrs() {
+		totalHrsWorked =0;
+		for(int i =0 ; i< hrsWorked.size() ; i++){
+    	     totalHrsWorked  = totalHrsWorked +  Integer.parseInt(hrsWorked.get(i).toString());
+		}
+    } 
     
     //Days Worked
   /*  public int getDays() {

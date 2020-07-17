@@ -105,7 +105,7 @@ public class Firebase {
 	    	Total = Total.replace(", ", "\" , \"");
 	    	Total = Total.replace("}\"", "\" } ");
 	    	Total = Total.replace("}]\"", "\"}]");
-	    	Total = Total.replace("0}", "0\"}");
+	    	//Total = Total.replace("0}", "0\"}");
 	    	Total = Total.replace("st\" : [",     "st\" : [ \"");
 	    	Total = Total.replace("]\" , \"", "\"] , \"");
 	    	Total = Total.replace("d\" : [", "d\" : [\"");
@@ -114,7 +114,8 @@ public class Firebase {
 			Total = Total.replace("}\" } ", "\"} } ");
 			Total = Total.replace("]}}}", "\"]}}}");
 			Total = Total.replace("]\"", "\"]");
-			System.out.println(Total);
+			Total = Total.replace("}}}", "\"}}}");
+			//System.out.println(Total);
 	    	return Total;
 	 }
 	 
@@ -122,6 +123,7 @@ public class Firebase {
 		 org.addEmp(  nam , age, overtimeRate, salaryPerDay);
 		 org.punch("empId"+(org.id-1) , 0.0f);
 		 org.punch("empId"+(org.id-1) , 0.0f);
+		 org.allEmp.get("empId"+(org.id-1)).setTemperature(0.0f);
 		 saveData("Organisation", org);
 		 SleepThread(100);
 		 return org;

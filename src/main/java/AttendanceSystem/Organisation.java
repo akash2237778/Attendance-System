@@ -67,6 +67,14 @@ public class Organisation {
 	public void calHWOrg(){
 		for(String key: allEmp.keySet()){
 				allEmp.get(key).calHrsWorked();
+				allEmp.get(key).getTotalHrs();
+		}
+	}
+	public void calSalaryOrg(){
+		for(String key: allEmp.keySet()){
+				allEmp.get(key).calHrsWorked();
+				allEmp.get(key).getTotalHrs();
+				allEmp.get(key).setSalary();
 		}
 	}
 }
