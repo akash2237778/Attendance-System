@@ -65,6 +65,12 @@ public class Firebase {
 	 public void saveData(String child, Organisation value) {
 		 dbref.child(child).setValueAsync(value);
 	 }
+
+	 public void saveData(String child, Punch value) {
+		dbref.child(child).setValueAsync(value);
+	}
+
+
 	 public String retriveData(String child) {
 		 int i =0;
 			 dbref.child(child).addValueEventListener(new ValueEventListener() {

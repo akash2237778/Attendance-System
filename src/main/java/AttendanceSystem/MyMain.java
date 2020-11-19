@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.swing.SortingFocusTraversalPolicy;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -33,12 +35,21 @@ public class MyMain {
     	Firebase obj = new Firebase();
 		ref = obj.setRef("/");
 
-    	String JSONstr = obj.convertToJSON(obj.retriveData("/Organisation"));
-    	Gson g = new Gson(); 
+		String name= "Akash";
+		String temperature = "45";
+		String Id = "0";
+		String EpochTime = "19-11-2020";
+
+		obj.saveData("Organisation", new Punch(name,temperature, Id));
+		obj.SleepThread(100000);
+
+
+    //	String JSONstr = obj.convertToJSON(obj.retriveData("/Organisation"));
+    //	Gson g = new Gson(); 
 		
 	
 
-    	Organisation p =  g.fromJson(JSONstr, Organisation.class);
+    //	Organisation p =  g.fromJson(JSONstr, Organisation.class);
     	//System.out.println(JSONstr);
     	
     	//obj.addEmptoOrg(p, "XYZD", 63, 5.2f, 120);
@@ -46,11 +57,11 @@ public class MyMain {
     	//p.punch("empId3");
     	
     	//obj.SleepThread(100000);
-    	Scanner scan = new Scanner(System.in);
+    //	Scanner scan = new Scanner(System.in);
 
-		System.out.println("Welcome to Attendance System");
+	//	System.out.println("Welcome to Attendance System");
     	
-    		int choice=3;
+    /*		int choice=3;
     		//System.out.println("1. Add Employee");
     		//System.out.println("2. Punch Attendance");
 			//choice = Integer.valueOf(scan.nextLine());
@@ -106,12 +117,14 @@ public class MyMain {
     		
     		//obj.saveData("Organisation", p);
 		}
-			System.out.print("press 1 to exit");
+		System.out.print("press 1 to exit");
 			int exit= Integer.valueOf(scan.nextLine());
 			if(exit ==1){
 				System.out.print("exiting");
 			}
-    	
+	*/
+	
+	
     }
     
     
