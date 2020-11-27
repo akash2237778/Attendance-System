@@ -89,22 +89,6 @@ public class Employee{
 		this.salaryPerDay = salaryPerDay;
 	}
 
-/*	public Date getInTime() {
-		return inTime;
-	}
-
-	public void setInTime(Date inTime) {
-		this.inTime = inTime;
-	}
-
-	public Date getOutTime() {
-		return outTime;
-	}
-
-	public void setOutTime(Date outTime) {
-		this.outTime = outTime;
-	}*/
-
 	public Boolean getIsWorking() {
 		return isWorking;
 	}
@@ -168,47 +152,7 @@ public class Employee{
 		this.salary = totalHrsWorked*salaryPerDay;
 	}
 
-/*	public int getWorkingHrs() {
-		return workingHrs;
-	}
-
-	public void setWorkingHrs(int workingHrs) {
-		this.workingHrs = workingHrs;
-	}
-
-
-	public int getTotalDays() {
-		return totalDays;
-	}
-
-	public void setTotalDays(int totalDays) {
-		this.totalDays = totalDays;
-	}
-
-	public int getTotalHrsWorked() {
-		return totalHrsWorked;
-	}
-
-	public void setTotalHrsWorked(int totalHrsWorked) {
-		this.totalHrsWorked = totalHrsWorked;
-	}
-
-	
-
-	public int getDaysWorked() {
-		return daysWorked;
-	}
-
-	public void setDaysWorked(int daysWorked) {
-		this.daysWorked = daysWorked;
-	}
-
-	public void setOverTimeHrs(int overTimeHrs) {
-		this.overTimeHrs = overTimeHrs;
-	}
-    
-*/    
-    
+   
     public boolean attendancePunch(Float temp) {
     	if(isWorking) {
     		//exit
@@ -261,41 +205,4 @@ public class Employee{
 		}
     } 
     
-    //Days Worked
-  /*  public int getDays() {
-    	Date currentDay = new Date();
-    	long diff = 0;
-			diff = currentDay.getTime() - startDay;
-    	long diffDays = diff / (24 * 60 * 60 * 1000);
-    	totalDays = (int)diffDays;
-    	daysWorked = inTimeList.size();
-		//System.out.println(diff);
-		return daysWorked;
-    	
-    }
     
- /*   public int getTotalHrs() {
-    	int i=0;
-    	while(i < outTimeList.size()) {
-    		getHrs(i);
-    		i++;
-    	}
-    	Iterator iterator = hrsWorked.iterator();
-    	while(iterator.hasNext()) {
-             totalHrsWorked  = totalHrsWorked +  ((Long)iterator.next()).intValue();
-         }
-    	return totalHrsWorked;
-    } 
-    
-    public int getOverTimeHrs() {
-    	overTimeHrs = getTotalHrs() - getDays()*workingHrs;
-    	return overTimeHrs;
-    }
-    
-    public long calSalary() {
-    	salary = (long) (getOverTimeHrs()*overtimeRate + getDays()*salaryPerDay);
-    	return salary<0? 0 : salary;
-    }
-    */
-    
-}
